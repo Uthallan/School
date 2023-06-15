@@ -18,7 +18,10 @@ namespace SoftwareII
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+
+            Database.Connect();
+            Application.Run(new MainForm());
+            Database.Disconnect();
             
         }
     }
