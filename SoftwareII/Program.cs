@@ -20,7 +20,9 @@ namespace SoftwareII
             Application.SetCompatibleTextRenderingDefault(false);
 
             Database.Connect();
+            
             Application.Run(new MainForm());
+
             Database.Disconnect();
             
         }

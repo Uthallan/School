@@ -87,6 +87,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="AppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppointmentForm.Designer.cs">
+      <DependentUpon>AppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MCRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MCRForm.Designer.cs">
+      <DependentUpon>MCRForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +113,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AppointmentForm.resx">
+      <DependentUpon>AppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MCRForm.resx">
+      <DependentUpon>MCRForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

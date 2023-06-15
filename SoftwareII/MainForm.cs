@@ -36,5 +36,39 @@ namespace SoftwareII
             }
             
         }
+
+        private void MainFormExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            LoginForm newForm = new LoginForm();
+            newForm.ShowDialog();
+        }
+
+        private void MainFormMCRButton_Click(object sender, EventArgs e)
+        {
+            MCRForm newForm = new MCRForm();
+            newForm.ShowDialog();
+        }
+
+        private void NewAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AppointmentForm newForm = new AppointmentForm();
+            newForm.ShowDialog();
+        }
+
+        private void UpdateAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AppointmentForm newForm = new AppointmentForm();
+            newForm.ShowDialog();
+        }
+
+        private void CancelAppointmentButton_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -10,16 +10,22 @@ using System.Windows.Forms;
 
 namespace SoftwareII
 {
-    public partial class LoginForm : Form
+    public partial class AppointmentForm : Form
     {
-        public LoginForm()
+        public AppointmentForm()
         {
             InitializeComponent();
         }
 
-        private void LoginFormCancelButton_Click(object sender, EventArgs e)
+        private void AppointmentFormExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void MainFormMCRButton_Click(object sender, EventArgs e)
+        {
+            MCRForm newForm = new MCRForm();
+            newForm.ShowDialog();
         }
     }
 }

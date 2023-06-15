@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SoftwareII
 {
-    public partial class LoginForm : Form
+    public partial class MCRForm : Form
     {
-        public LoginForm()
+        public MCRForm()
         {
             InitializeComponent();
         }
 
-        private void LoginFormCancelButton_Click(object sender, EventArgs e)
+        private void MCRFormExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }

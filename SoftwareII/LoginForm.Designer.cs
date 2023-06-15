@@ -86,6 +86,7 @@ namespace SoftwareII
             this.LoginFormCancelButton.TabIndex = 5;
             this.LoginFormCancelButton.Text = "Cancel";
             this.LoginFormCancelButton.UseVisualStyleBackColor = true;
+            this.LoginFormCancelButton.Click += new System.EventHandler(this.LoginFormCancelButton_Click);
             // 
             // LoginForm
             // 
