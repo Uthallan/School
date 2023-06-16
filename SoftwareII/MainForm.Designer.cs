@@ -40,6 +40,7 @@ namespace SoftwareII
             this.CancelAppointmentButton = new System.Windows.Forms.Button();
             this.LoginButton = new System.Windows.Forms.Button();
             this.MainFormMCRButton = new System.Windows.Forms.Button();
+            this.LoggedInUserLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AppointmentsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +71,7 @@ namespace SoftwareII
             this.AppointmentsDataGridView.Name = "AppointmentsDataGridView";
             this.AppointmentsDataGridView.Size = new System.Drawing.Size(580, 287);
             this.AppointmentsDataGridView.TabIndex = 2;
+            this.AppointmentsDataGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AppointmentsDataGridView_MouseMove);
             // 
             // MainFormAllRadioButton
             // 
@@ -154,11 +156,20 @@ namespace SoftwareII
             this.MainFormMCRButton.UseVisualStyleBackColor = true;
             this.MainFormMCRButton.Click += new System.EventHandler(this.MainFormMCRButton_Click);
             // 
+            // LoggedInUserLabel
+            // 
+            this.LoggedInUserLabel.AutoSize = true;
+            this.LoggedInUserLabel.Location = new System.Drawing.Point(12, 19);
+            this.LoggedInUserLabel.Name = "LoggedInUserLabel";
+            this.LoggedInUserLabel.Size = new System.Drawing.Size(0, 13);
+            this.LoggedInUserLabel.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LoggedInUserLabel);
             this.Controls.Add(this.MainFormMCRButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.CancelAppointmentButton);
@@ -191,5 +202,6 @@ namespace SoftwareII
         private System.Windows.Forms.Button CancelAppointmentButton;
         private System.Windows.Forms.Button LoginButton;
         private System.Windows.Forms.Button MainFormMCRButton;
+        private System.Windows.Forms.Label LoggedInUserLabel;
     }
 }

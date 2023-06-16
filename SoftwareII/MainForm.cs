@@ -15,7 +15,11 @@ namespace SoftwareII
         public MainForm()
         {
             InitializeComponent();
+
+           
+           
         }
+
 
         private void CheckDatabaseConnectionButton_Click(object sender, EventArgs e)
         {
@@ -36,7 +40,6 @@ namespace SoftwareII
             }
             
         }
-
         private void MainFormExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -69,6 +72,18 @@ namespace SoftwareII
         private void CancelAppointmentButton_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void AppointmentsDataGridView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Database.loggedInUser != null)
+            {
+                LoggedInUserLabel.Text = $"Logged in as {Database.loggedInUser.UserName}";
+            }
+            else
+            {
+                LoggedInUserLabel.Text = "";
+            }
         }
     }
 }

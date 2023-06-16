@@ -20,7 +20,10 @@ namespace SoftwareII
             Application.SetCompatibleTextRenderingDefault(false);
 
             Database.Connect();
-            
+            Database.DatabaseUsers = Database.GetUsers();
+
+            Database.loggedInUser = null;
+
             Application.Run(new MainForm());
 
             Database.Disconnect();

@@ -9,12 +9,18 @@ using MySql.Data.MySqlClient;
 
 namespace SoftwareII
 {
-    public class Database
+    public static class Database
     {
         
 
         // Make the connection to the database
         public static MySqlConnection connection { get; set; }
+        public static List<User> DatabaseUsers { get; set; }
+
+        public static User loggedInUser { get; set; }
+
+
+        
         public static void Connect()
         {
             try
@@ -50,6 +56,41 @@ namespace SoftwareII
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        public static List<User> GetUsers()
+        {
+            var users = new List<User>();
+
+            try
+            {
+                // Ensure the database connection is open
+                if (connection.State != System.Data.ConnectionState.Open)
+                    Connect();
+
+                var command = new MySqlCommand("SELECT * FROM user", connection);
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new User
+                        {
+                            UserId = Convert.ToInt32(reader["userId"]),
+                            UserName = Convert.ToString(reader["userName"]),
+                            Password = Convert.ToString(reader["password"]),
+                            Active = Convert.ToInt32(reader["active"])
+                        });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return users;
+        }
+
+
+
     }
 }
