@@ -101,6 +101,7 @@ namespace SoftwareII
                     string message = $"Login successful for {user.UserName}";
                     MessageBox.Show(message + "\n" + GetTranslation(language, message, user.UserName));
                     Database.loggedInUser = user;
+                    this.Close();
                 }
                 else
                 {

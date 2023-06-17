@@ -32,9 +32,9 @@ namespace SoftwareII
             this.DeleteRecordButton = new System.Windows.Forms.Button();
             this.UpdateRecordButton = new System.Windows.Forms.Button();
             this.NewRecordButton = new System.Windows.Forms.Button();
-            this.RecordssDataGridView = new System.Windows.Forms.DataGridView();
+            this.CustomersDataGridView = new System.Windows.Forms.DataGridView();
             this.MCRFormExitButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.RecordssDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // DeleteRecordButton
@@ -45,6 +45,7 @@ namespace SoftwareII
             this.DeleteRecordButton.TabIndex = 13;
             this.DeleteRecordButton.Text = "Delete Record";
             this.DeleteRecordButton.UseVisualStyleBackColor = true;
+            this.DeleteRecordButton.Click += new System.EventHandler(this.DeleteRecordButton_Click);
             // 
             // UpdateRecordButton
             // 
@@ -54,6 +55,7 @@ namespace SoftwareII
             this.UpdateRecordButton.TabIndex = 12;
             this.UpdateRecordButton.Text = "Update Record";
             this.UpdateRecordButton.UseVisualStyleBackColor = true;
+            this.UpdateRecordButton.Click += new System.EventHandler(this.UpdateRecordButton_Click);
             // 
             // NewRecordButton
             // 
@@ -63,14 +65,15 @@ namespace SoftwareII
             this.NewRecordButton.TabIndex = 11;
             this.NewRecordButton.Text = "New Record";
             this.NewRecordButton.UseVisualStyleBackColor = true;
+            this.NewRecordButton.Click += new System.EventHandler(this.NewRecordButton_Click);
             // 
-            // RecordssDataGridView
+            // CustomersDataGridView
             // 
-            this.RecordssDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RecordssDataGridView.Location = new System.Drawing.Point(104, 65);
-            this.RecordssDataGridView.Name = "RecordssDataGridView";
-            this.RecordssDataGridView.Size = new System.Drawing.Size(580, 287);
-            this.RecordssDataGridView.TabIndex = 10;
+            this.CustomersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomersDataGridView.Location = new System.Drawing.Point(104, 65);
+            this.CustomersDataGridView.Name = "CustomersDataGridView";
+            this.CustomersDataGridView.Size = new System.Drawing.Size(580, 287);
+            this.CustomersDataGridView.TabIndex = 10;
             // 
             // MCRFormExitButton
             // 
@@ -91,10 +94,10 @@ namespace SoftwareII
             this.Controls.Add(this.DeleteRecordButton);
             this.Controls.Add(this.UpdateRecordButton);
             this.Controls.Add(this.NewRecordButton);
-            this.Controls.Add(this.RecordssDataGridView);
+            this.Controls.Add(this.CustomersDataGridView);
             this.Name = "MCRForm";
             this.Text = "Customer Records";
-            ((System.ComponentModel.ISupportInitialize)(this.RecordssDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomersDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -104,7 +107,7 @@ namespace SoftwareII
         private System.Windows.Forms.Button DeleteRecordButton;
         private System.Windows.Forms.Button UpdateRecordButton;
         private System.Windows.Forms.Button NewRecordButton;
-        private System.Windows.Forms.DataGridView RecordssDataGridView;
+        private System.Windows.Forms.DataGridView CustomersDataGridView;
         private System.Windows.Forms.Button MCRFormExitButton;
     }
 }

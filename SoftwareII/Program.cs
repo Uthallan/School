@@ -19,6 +19,8 @@ namespace SoftwareII
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            
+
             Database.Connect();
             Database.DatabaseUsers = Database.GetUsers();
 
