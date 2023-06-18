@@ -29,60 +29,46 @@ namespace SoftwareII
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.ClientTextBox = new System.Windows.Forms.TextBox();
+            this.UserIdTestBox = new System.Windows.Forms.TextBox();
+            this.AppointmentTypeTextbox = new System.Windows.Forms.TextBox();
+            this.ClientSearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchClientButton = new System.Windows.Forms.Button();
-            this.TitleLabel = new System.Windows.Forms.Label();
+            this.UserIDLabel = new System.Windows.Forms.Label();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.StartLabel = new System.Windows.Forms.Label();
             this.EndLabel = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CustomerNameLabel = new System.Windows.Forms.Label();
             this.AppointmentFormExitButton = new System.Windows.Forms.Button();
             this.ScheduleButton = new System.Windows.Forms.Button();
             this.MainFormMCRButton = new System.Windows.Forms.Button();
             this.IDLabel = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.CustomerIDTextBox = new System.Windows.Forms.TextBox();
+            this.StartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.EndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // textBox1
+            // UserIdTestBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(618, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.UserIdTestBox.Location = new System.Drawing.Point(215, 90);
+            this.UserIdTestBox.Name = "UserIdTestBox";
+            this.UserIdTestBox.Size = new System.Drawing.Size(100, 20);
+            this.UserIdTestBox.TabIndex = 0;
             // 
-            // textBox2
+            // AppointmentTypeTextbox
             // 
-            this.textBox2.Location = new System.Drawing.Point(618, 192);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.AppointmentTypeTextbox.Location = new System.Drawing.Point(215, 116);
+            this.AppointmentTypeTextbox.Name = "AppointmentTypeTextbox";
+            this.AppointmentTypeTextbox.Size = new System.Drawing.Size(100, 20);
+            this.AppointmentTypeTextbox.TabIndex = 1;
             // 
-            // textBox3
+            // ClientSearchTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(618, 218);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(618, 244);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 3;
-            // 
-            // ClientTextBox
-            // 
-            this.ClientTextBox.Location = new System.Drawing.Point(146, 9);
-            this.ClientTextBox.Name = "ClientTextBox";
-            this.ClientTextBox.Size = new System.Drawing.Size(134, 20);
-            this.ClientTextBox.TabIndex = 4;
+            this.ClientSearchTextBox.Location = new System.Drawing.Point(146, 9);
+            this.ClientSearchTextBox.Name = "ClientSearchTextBox";
+            this.ClientSearchTextBox.Size = new System.Drawing.Size(134, 20);
+            this.ClientSearchTextBox.TabIndex = 4;
             // 
             // SearchClientButton
             // 
@@ -92,20 +78,21 @@ namespace SoftwareII
             this.SearchClientButton.TabIndex = 5;
             this.SearchClientButton.Text = "Search Clients";
             this.SearchClientButton.UseVisualStyleBackColor = true;
+            this.SearchClientButton.Click += new System.EventHandler(this.SearchClientButton_Click);
             // 
-            // TitleLabel
+            // UserIDLabel
             // 
-            this.TitleLabel.AutoSize = true;
-            this.TitleLabel.Location = new System.Drawing.Point(577, 166);
-            this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(27, 13);
-            this.TitleLabel.TabIndex = 6;
-            this.TitleLabel.Text = "Title";
+            this.UserIDLabel.AutoSize = true;
+            this.UserIDLabel.Location = new System.Drawing.Point(174, 90);
+            this.UserIDLabel.Name = "UserIDLabel";
+            this.UserIDLabel.Size = new System.Drawing.Size(40, 13);
+            this.UserIDLabel.TabIndex = 6;
+            this.UserIDLabel.Text = "UserID";
             // 
             // TypeLabel
             // 
             this.TypeLabel.AutoSize = true;
-            this.TypeLabel.Location = new System.Drawing.Point(577, 195);
+            this.TypeLabel.Location = new System.Drawing.Point(174, 119);
             this.TypeLabel.Name = "TypeLabel";
             this.TypeLabel.Size = new System.Drawing.Size(31, 13);
             this.TypeLabel.TabIndex = 7;
@@ -114,7 +101,7 @@ namespace SoftwareII
             // StartLabel
             // 
             this.StartLabel.AutoSize = true;
-            this.StartLabel.Location = new System.Drawing.Point(557, 225);
+            this.StartLabel.Location = new System.Drawing.Point(9, 153);
             this.StartLabel.Name = "StartLabel";
             this.StartLabel.Size = new System.Drawing.Size(55, 13);
             this.StartLabel.TabIndex = 8;
@@ -123,20 +110,20 @@ namespace SoftwareII
             // EndLabel
             // 
             this.EndLabel.AutoSize = true;
-            this.EndLabel.Location = new System.Drawing.Point(560, 247);
+            this.EndLabel.Location = new System.Drawing.Point(12, 185);
             this.EndLabel.Name = "EndLabel";
             this.EndLabel.Size = new System.Drawing.Size(52, 13);
             this.EndLabel.TabIndex = 9;
             this.EndLabel.Text = "End Time";
             // 
-            // textBox5
+            // CustomerNameTextBox
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(58, 90);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 10;
+            this.CustomerNameTextBox.Enabled = false;
+            this.CustomerNameTextBox.Location = new System.Drawing.Point(58, 90);
+            this.CustomerNameTextBox.Name = "CustomerNameTextBox";
+            this.CustomerNameTextBox.ReadOnly = true;
+            this.CustomerNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CustomerNameTextBox.TabIndex = 10;
             // 
             // label1
             // 
@@ -174,6 +161,7 @@ namespace SoftwareII
             this.ScheduleButton.TabIndex = 14;
             this.ScheduleButton.Text = "Schedule Appointment";
             this.ScheduleButton.UseVisualStyleBackColor = true;
+            this.ScheduleButton.Click += new System.EventHandler(this.ScheduleButton_Click);
             // 
             // MainFormMCRButton
             // 
@@ -194,38 +182,54 @@ namespace SoftwareII
             this.IDLabel.TabIndex = 17;
             this.IDLabel.Text = "ID";
             // 
-            // textBox6
+            // CustomerIDTextBox
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(58, 116);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 16;
+            this.CustomerIDTextBox.Enabled = false;
+            this.CustomerIDTextBox.Location = new System.Drawing.Point(58, 116);
+            this.CustomerIDTextBox.Name = "CustomerIDTextBox";
+            this.CustomerIDTextBox.ReadOnly = true;
+            this.CustomerIDTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CustomerIDTextBox.TabIndex = 16;
+            // 
+            // StartDatePicker
+            // 
+            this.StartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.StartDatePicker.Location = new System.Drawing.Point(70, 153);
+            this.StartDatePicker.Name = "StartDatePicker";
+            this.StartDatePicker.Size = new System.Drawing.Size(108, 20);
+            this.StartDatePicker.TabIndex = 18;
+            // 
+            // EndDatePicker
+            // 
+            this.EndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.EndDatePicker.Location = new System.Drawing.Point(70, 185);
+            this.EndDatePicker.Name = "EndDatePicker";
+            this.EndDatePicker.Size = new System.Drawing.Size(108, 20);
+            this.EndDatePicker.TabIndex = 19;
             // 
             // AppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.EndDatePicker);
+            this.Controls.Add(this.StartDatePicker);
             this.Controls.Add(this.IDLabel);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.CustomerIDTextBox);
             this.Controls.Add(this.MainFormMCRButton);
             this.Controls.Add(this.ScheduleButton);
             this.Controls.Add(this.AppointmentFormExitButton);
             this.Controls.Add(this.CustomerNameLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.CustomerNameTextBox);
             this.Controls.Add(this.EndLabel);
             this.Controls.Add(this.StartLabel);
             this.Controls.Add(this.TypeLabel);
-            this.Controls.Add(this.TitleLabel);
+            this.Controls.Add(this.UserIDLabel);
             this.Controls.Add(this.SearchClientButton);
-            this.Controls.Add(this.ClientTextBox);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ClientSearchTextBox);
+            this.Controls.Add(this.AppointmentTypeTextbox);
+            this.Controls.Add(this.UserIdTestBox);
             this.Name = "AppointmentForm";
             this.Text = "Appointment";
             this.ResumeLayout(false);
@@ -235,23 +239,23 @@ namespace SoftwareII
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox ClientTextBox;
+        private System.Windows.Forms.TextBox UserIdTestBox;
+        private System.Windows.Forms.TextBox AppointmentTypeTextbox;
+        private System.Windows.Forms.TextBox ClientSearchTextBox;
         private System.Windows.Forms.Button SearchClientButton;
-        private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Label UserIDLabel;
         private System.Windows.Forms.Label TypeLabel;
         private System.Windows.Forms.Label StartLabel;
         private System.Windows.Forms.Label EndLabel;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox CustomerNameTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label CustomerNameLabel;
         private System.Windows.Forms.Button AppointmentFormExitButton;
         private System.Windows.Forms.Button ScheduleButton;
         private System.Windows.Forms.Button MainFormMCRButton;
         private System.Windows.Forms.Label IDLabel;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox CustomerIDTextBox;
+        private System.Windows.Forms.DateTimePicker StartDatePicker;
+        private System.Windows.Forms.DateTimePicker EndDatePicker;
     }
 }

@@ -151,7 +151,7 @@ namespace SoftwareII
                 // Get the current UTC time
                 DateTime utcTime = DateTime.UtcNow;
                 string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
-                string currentUser = System.Environment.UserName;
+                string currentUser = loggedInUser.UserName;
 
                 // Insert into the country table if the country does not exist
                 var countryCommand = new MySqlCommand(@"
@@ -267,7 +267,7 @@ namespace SoftwareII
                 // Get the current UTC time
                 DateTime utcTime = DateTime.UtcNow;
                 string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
-                string currentUser = System.Environment.UserName;
+                string currentUser = loggedInUser.UserName;
 
                 // Check if the country exists
                 var countryIdCommand = new MySqlCommand("SELECT countryId FROM country WHERE country = @country", connection);
@@ -361,6 +361,153 @@ namespace SoftwareII
                 WHERE countryId NOT IN (SELECT countryId FROM city)", connection);
                 deleteUnassociatedCountryCommand.ExecuteNonQuery();
 
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static List<Appointment> GetAppointments()
+        {
+            var appointments = new List<Appointment>();
+
+            try
+            {
+                // Ensure the database connection is open
+                if (connection.State != System.Data.ConnectionState.Open)
+                    Connect();
+
+                var command = new MySqlCommand(@"
+            SELECT appointmentId, customerId, userId, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy 
+            FROM appointment", connection);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        appointments.Add(new Appointment
+                        {
+                            AppointmentId = Convert.ToInt32(reader["appointmentId"]),
+                            CustomerId = Convert.ToInt32(reader["customerId"]),
+                            UserId = Convert.ToInt32(reader["userId"]),
+                            Type = Convert.ToString(reader["type"]),
+                            Start = Convert.ToDateTime(reader["start"]),
+                            End = Convert.ToDateTime(reader["end"]),
+                            CreateDate = Convert.ToDateTime(reader["createDate"]),
+                            CreatedBy = Convert.ToString(reader["createdBy"]),
+                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"]),
+                            LastUpdateBy = Convert.ToString(reader["lastUpdateBy"])
+                        });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return appointments;
+        }
+
+        public static void AddAppointment(Appointment appointment)
+        {
+            try
+            {
+                // Ensure the database connection is open
+                if (connection.State != System.Data.ConnectionState.Open)
+                    Connect();
+
+                // Get the current UTC time
+                DateTime utcTime = DateTime.UtcNow;
+                string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
+                string currentUser = loggedInUser.UserName;
+
+                // Insert into the appointment table
+                var appointmentCommand = new MySqlCommand(@"
+        INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)
+        VALUES (@customerId, @userId, @title, @description, @location, @contact, @type, @url, @start, @end, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)", connection);
+
+                appointmentCommand.Parameters.AddWithValue("@customerId", appointment.CustomerId);
+                appointmentCommand.Parameters.AddWithValue("@userId", appointment.UserId);
+                appointmentCommand.Parameters.AddWithValue("@title", "Not needed"); // Replace with actual title if needed
+                appointmentCommand.Parameters.AddWithValue("@description", "Not needed"); // Replace with actual description if needed
+                appointmentCommand.Parameters.AddWithValue("@location", "Not needed"); // Replace with actual location if needed
+                appointmentCommand.Parameters.AddWithValue("@contact", "Not needed"); // Replace with actual contact if needed
+                appointmentCommand.Parameters.AddWithValue("@type", appointment.Type);
+                appointmentCommand.Parameters.AddWithValue("@url", "Not needed"); // Replace with actual URL if needed
+                appointmentCommand.Parameters.AddWithValue("@start", appointment.Start.ToString("yyyy-MM-dd HH:mm:ss"));
+                appointmentCommand.Parameters.AddWithValue("@end", appointment.End.ToString("yyyy-MM-dd HH:mm:ss"));
+                appointmentCommand.Parameters.AddWithValue("@createDate", formattedUtcTime);
+                appointmentCommand.Parameters.AddWithValue("@createdBy", currentUser);
+                appointmentCommand.Parameters.AddWithValue("@lastUpdate", formattedUtcTime);
+                appointmentCommand.Parameters.AddWithValue("@lastUpdateBy", currentUser);
+
+                appointmentCommand.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public static void UpdateAppointment(Appointment appointment)
+        {
+            try
+            {
+                // Ensure the database connection is open
+                if (connection.State != System.Data.ConnectionState.Open)
+                    Connect();
+
+                // Get the current UTC time
+                DateTime utcTime = DateTime.UtcNow;
+                string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
+                string currentUser = loggedInUser.UserName;
+
+                // Prepare the SQL command to update the appointment
+                var appointmentCommand = new MySqlCommand(@"
+            UPDATE appointment
+            SET customerId = @customerId, userId = @userId, type = @type, start = @start, end = @end, 
+            lastUpdate = @lastUpdate, lastUpdateBy = @lastUpdateBy
+            WHERE appointmentId = @appointmentId", connection);
+
+                // Fill in the parameters with the data from the appointment object
+                appointmentCommand.Parameters.AddWithValue("@customerId", appointment.CustomerId);
+                appointmentCommand.Parameters.AddWithValue("@userId", appointment.UserId);
+                appointmentCommand.Parameters.AddWithValue("@type", appointment.Type);
+                appointmentCommand.Parameters.AddWithValue("@start", appointment.Start.ToString("yyyy-MM-dd HH:mm:ss"));
+                appointmentCommand.Parameters.AddWithValue("@end", appointment.End.ToString("yyyy-MM-dd HH:mm:ss"));
+                appointmentCommand.Parameters.AddWithValue("@lastUpdate", formattedUtcTime);
+                appointmentCommand.Parameters.AddWithValue("@lastUpdateBy", currentUser);
+                appointmentCommand.Parameters.AddWithValue("@appointmentId", appointment.AppointmentId);
+
+                // Execute the command
+                appointmentCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public static void DeleteAppointment(Appointment appointment)
+        {
+            try
+            {
+                // Ensure the database connection is open
+                if (connection.State != System.Data.ConnectionState.Open)
+                    Connect();
+
+                // Create the delete command
+                var deleteAppointmentCommand = new MySqlCommand("DELETE FROM appointment WHERE appointmentId = @appointmentId", connection);
+
+                // Add the appointmentId parameter
+                deleteAppointmentCommand.Parameters.AddWithValue("@appointmentId", appointment.AppointmentId);
+
+                // Execute the command
+                deleteAppointmentCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex)
             {
