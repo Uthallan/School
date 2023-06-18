@@ -29,7 +29,7 @@ namespace SoftwareII
         /// </summary>
         private void InitializeComponent()
         {
-            this.UserIdTestBox = new System.Windows.Forms.TextBox();
+            this.UserIdTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentTypeTextbox = new System.Windows.Forms.TextBox();
             this.ClientSearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchClientButton = new System.Windows.Forms.Button();
@@ -49,12 +49,14 @@ namespace SoftwareII
             this.EndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // UserIdTestBox
+            // UserIdTextBox
             // 
-            this.UserIdTestBox.Location = new System.Drawing.Point(215, 90);
-            this.UserIdTestBox.Name = "UserIdTestBox";
-            this.UserIdTestBox.Size = new System.Drawing.Size(100, 20);
-            this.UserIdTestBox.TabIndex = 0;
+            this.UserIdTextBox.Enabled = false;
+            this.UserIdTextBox.Location = new System.Drawing.Point(215, 90);
+            this.UserIdTextBox.Name = "UserIdTextBox";
+            this.UserIdTextBox.ReadOnly = true;
+            this.UserIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.UserIdTextBox.TabIndex = 0;
             // 
             // AppointmentTypeTextbox
             // 
@@ -65,14 +67,14 @@ namespace SoftwareII
             // 
             // ClientSearchTextBox
             // 
-            this.ClientSearchTextBox.Location = new System.Drawing.Point(146, 9);
+            this.ClientSearchTextBox.Location = new System.Drawing.Point(12, 28);
             this.ClientSearchTextBox.Name = "ClientSearchTextBox";
             this.ClientSearchTextBox.Size = new System.Drawing.Size(134, 20);
             this.ClientSearchTextBox.TabIndex = 4;
             // 
             // SearchClientButton
             // 
-            this.SearchClientButton.Location = new System.Drawing.Point(286, 7);
+            this.SearchClientButton.Location = new System.Drawing.Point(152, 26);
             this.SearchClientButton.Name = "SearchClientButton";
             this.SearchClientButton.Size = new System.Drawing.Size(104, 23);
             this.SearchClientButton.TabIndex = 5;
@@ -145,7 +147,7 @@ namespace SoftwareII
             // 
             // AppointmentFormExitButton
             // 
-            this.AppointmentFormExitButton.Location = new System.Drawing.Point(735, 396);
+            this.AppointmentFormExitButton.Location = new System.Drawing.Point(187, 259);
             this.AppointmentFormExitButton.Name = "AppointmentFormExitButton";
             this.AppointmentFormExitButton.Size = new System.Drawing.Size(53, 42);
             this.AppointmentFormExitButton.TabIndex = 13;
@@ -155,7 +157,7 @@ namespace SoftwareII
             // 
             // ScheduleButton
             // 
-            this.ScheduleButton.Location = new System.Drawing.Point(615, 396);
+            this.ScheduleButton.Location = new System.Drawing.Point(67, 259);
             this.ScheduleButton.Name = "ScheduleButton";
             this.ScheduleButton.Size = new System.Drawing.Size(114, 42);
             this.ScheduleButton.TabIndex = 14;
@@ -165,9 +167,9 @@ namespace SoftwareII
             // 
             // MainFormMCRButton
             // 
-            this.MainFormMCRButton.Location = new System.Drawing.Point(396, 9);
+            this.MainFormMCRButton.Location = new System.Drawing.Point(80, 230);
             this.MainFormMCRButton.Name = "MainFormMCRButton";
-            this.MainFormMCRButton.Size = new System.Drawing.Size(119, 36);
+            this.MainFormMCRButton.Size = new System.Drawing.Size(148, 23);
             this.MainFormMCRButton.TabIndex = 15;
             this.MainFormMCRButton.Text = "Manage Customer Records";
             this.MainFormMCRButton.UseVisualStyleBackColor = true;
@@ -211,7 +213,7 @@ namespace SoftwareII
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(330, 319);
             this.Controls.Add(this.EndDatePicker);
             this.Controls.Add(this.StartDatePicker);
             this.Controls.Add(this.IDLabel);
@@ -229,7 +231,7 @@ namespace SoftwareII
             this.Controls.Add(this.SearchClientButton);
             this.Controls.Add(this.ClientSearchTextBox);
             this.Controls.Add(this.AppointmentTypeTextbox);
-            this.Controls.Add(this.UserIdTestBox);
+            this.Controls.Add(this.UserIdTextBox);
             this.Name = "AppointmentForm";
             this.Text = "Appointment";
             this.ResumeLayout(false);
@@ -239,7 +241,7 @@ namespace SoftwareII
 
         #endregion
 
-        private System.Windows.Forms.TextBox UserIdTestBox;
+        private System.Windows.Forms.TextBox UserIdTextBox;
         private System.Windows.Forms.TextBox AppointmentTypeTextbox;
         private System.Windows.Forms.TextBox ClientSearchTextBox;
         private System.Windows.Forms.Button SearchClientButton;

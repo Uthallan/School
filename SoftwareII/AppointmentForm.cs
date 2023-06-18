@@ -22,14 +22,15 @@ namespace SoftwareII
             {
                 CustomerIDTextBox.Text = appointment.CustomerId.ToString();
 
+
                 AppointmentTypeTextbox.Text = appointment.Type;
                 StartDatePicker.Value = appointment.Start;
                 EndDatePicker.Value = appointment.End;
-                UserIdTestBox.Text = appointment.UserId.ToString();
+                UserIdTextBox.Text = appointment.UserId.ToString();
 
                 List<Customer> customerList = Database.GetCustomers();
 
-                // Find the customer with the matching ID
+                // Find the customer with the matching ID. Used LINQ Lambda to save lines as its compact
                 Customer selectedCustomer = customerList.FirstOrDefault(c => c.CustomerId == appointment.CustomerId);
 
                 if (selectedCustomer != null)
@@ -45,7 +46,10 @@ namespace SoftwareII
 
                 _appointment = appointment;
             }
-
+            else
+            {
+                UserIdTextBox.Text = Database.loggedInUser.UserId.ToString();
+            }
 
 
         }
@@ -68,7 +72,7 @@ namespace SoftwareII
             Customer resultCustomer = null;
             List<Customer> customersList = Database.GetCustomers();
 
-
+            // Find the customer with the matching ID. Used LINQ Lambda to save lines as its compact
             resultCustomer = customersList.FirstOrDefault(customer => customer.CustomerName.Equals(searchParameter));
 
             return resultCustomer;
@@ -87,9 +91,9 @@ namespace SoftwareII
                 CustomerNameTextBox.Text = resultCustomer.CustomerName;
                 CustomerIDTextBox.Text = resultCustomer.CustomerId.ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Could not find customer with that name, are you sure you typed it correctly");
             }
 
 
@@ -141,7 +145,7 @@ namespace SoftwareII
             }
 
             // Check if the appointment is for a time in the past
-            if (userInput.Start < DateTime.UtcNow || userInput.End < DateTime.UtcNow)
+            if (userInput.Start < DateTime.Now || userInput.End < DateTime.Now)
             {
                 MessageBox.Show("Appointment times must be in the future.");
                 return false;
@@ -150,25 +154,93 @@ namespace SoftwareII
             return true;
         }
 
+        public bool AppointmentValidation(Appointment newAppointment)
+        {
+            // Define business hours
+            TimeSpan startBusinessHour = new TimeSpan(6, 0, 0); // 6 AM
+            TimeSpan endBusinessHour = new TimeSpan(18, 0, 0); // 6 PM
+
+            // Convert appointment times to local time
+            DateTime localStartTime = newAppointment.Start;
+            DateTime localEndTime = newAppointment.End;
+
+            // Check if the appointment start time is earlier than the end time
+            if (localStartTime >= localEndTime)
+            {
+                MessageBox.Show("The start time of the appointment must be earlier than the end time.");
+                return false;
+            }
+
+            // Check if the appointment start and end times are within the business hours
+            if ((localStartTime.TimeOfDay >= startBusinessHour && localStartTime.TimeOfDay < endBusinessHour) &&
+                (localEndTime.TimeOfDay > startBusinessHour && localEndTime.TimeOfDay <= endBusinessHour))
+            {
+                // Get all appointments
+                List<Appointment> allAppointments = Database.GetAppointments();
+
+                // Check for overlapping appointments
+                foreach (var appointment in allAppointments)
+                {
+                    // Skip the check for the same appointment
+                    if (appointment.AppointmentId == newAppointment.AppointmentId) continue;
+
+                    if (appointment.Start < localEndTime && localStartTime < appointment.End)
+                    {
+                        // Show warning message
+                        MessageBox.Show("The appointment overlaps with another one. Please choose a different time slot.");
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            // Show warning message
+            MessageBox.Show("The appointment is not within the business hours (6 AM to 6 PM). Please choose a different time.");
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
         private void ScheduleButton_Click(object sender, EventArgs e)
         {
+            
+            
             if (_appointment != null)
             {
+
                 // Update _appointment with the new data
                 _appointment.CustomerId = int.Parse(CustomerIDTextBox.Text);
                 _appointment.Type = AppointmentTypeTextbox.Text;
-                _appointment.UserId = int.Parse(UserIdTestBox.Text);
+                _appointment.UserId = int.Parse(UserIdTextBox.Text);
                 _appointment.Start = StartDatePicker.Value;
                 _appointment.End = EndDatePicker.Value;
                 _appointment.CreateDate = DateTime.UtcNow;
                 _appointment.CreatedBy = Database.loggedInUser.UserName;
                 _appointment.LastUpdate = DateTime.UtcNow;
                 _appointment.LastUpdateBy = Database.loggedInUser.UserName;
-               
 
-                // Update the appointment in the database
-                Database.UpdateAppointment(_appointment);
-                this.Close();
+                if (AppointmentValidation(_appointment))
+                {
+                    // Update the appointment in the database
+                    Database.UpdateAppointment(_appointment);
+                    this.Close();
+                }
+                else
+                {
+                    
+                }
+
+
+
+                
             }
             else
             {
@@ -201,9 +273,18 @@ namespace SoftwareII
                     LastUpdateBy = userInput.LastUpdateBy
                 };
 
-                // Add newAppointment to the database
-                Database.AddAppointment(newAppointment);
-                this.Close();
+                if (AppointmentValidation(newAppointment))
+                {
+                    // Update the appointment in the database
+                    Database.AddAppointment(newAppointment);
+                    this.Close();
+                }
+                else
+                {
+                    
+                }
+
+                
             }
         }
 

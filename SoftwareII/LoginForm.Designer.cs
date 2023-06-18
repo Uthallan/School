@@ -35,6 +35,7 @@ namespace SoftwareII
             this.label2 = new System.Windows.Forms.Label();
             this.LoginFormLoginbutton = new System.Windows.Forms.Button();
             this.LoginFormCancelButton = new System.Windows.Forms.Button();
+            this.LogsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LoginFormUsernameTextBox
@@ -89,11 +90,22 @@ namespace SoftwareII
             this.LoginFormCancelButton.UseVisualStyleBackColor = true;
             this.LoginFormCancelButton.Click += new System.EventHandler(this.LoginFormCancelButton_Click);
             // 
+            // LogsButton
+            // 
+            this.LogsButton.Location = new System.Drawing.Point(12, 12);
+            this.LogsButton.Name = "LogsButton";
+            this.LogsButton.Size = new System.Drawing.Size(75, 23);
+            this.LogsButton.TabIndex = 6;
+            this.LogsButton.Text = "Logs";
+            this.LogsButton.UseVisualStyleBackColor = true;
+            this.LogsButton.Click += new System.EventHandler(this.LogsButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(329, 260);
+            this.Controls.Add(this.LogsButton);
             this.Controls.Add(this.LoginFormCancelButton);
             this.Controls.Add(this.LoginFormLoginbutton);
             this.Controls.Add(this.label2);
@@ -115,6 +127,7 @@ namespace SoftwareII
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button LoginFormLoginbutton;
         private System.Windows.Forms.Button LoginFormCancelButton;
+        private System.Windows.Forms.Button LogsButton;
     }
 }
 

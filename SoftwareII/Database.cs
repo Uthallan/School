@@ -465,6 +465,10 @@ namespace SoftwareII
                 string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
                 string currentUser = loggedInUser.UserName;
 
+                // Set appointment local time to UTC
+                appointment.Start = appointment.Start.ToUniversalTime();
+                appointment.End = appointment.End.ToUniversalTime();
+
                 // Prepare the SQL command to update the appointment
                 var appointmentCommand = new MySqlCommand(@"
             UPDATE appointment
