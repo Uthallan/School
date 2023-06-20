@@ -17,7 +17,7 @@ namespace SoftwareII
         public LoginForm()
         {
             InitializeComponent();
-            LanguageLabel.Text = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            LanguageLabel.Text = "Language: " + CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         }
 
         private void LoginFormCancelButton_Click(object sender, EventArgs e)
@@ -41,9 +41,17 @@ namespace SoftwareII
         private static readonly Dictionary<string, Dictionary<string, string>> Translations = new Dictionary<string, Dictionary<string, string>>
         {
             {
+                "frc", new Dictionary<string, string> // French translations
+                {
+                    {"Login successful", "Connexion réussie"},
+                    {"Incorrect password", "Mot de passe incorrect"},
+                    {"Could not find user", "Impossible de trouver l'utilisateur"},
+                }
+            },
+            {
                 "fr", new Dictionary<string, string> // French translations
                 {
-                    {"Login successful for {0}", "Connexion réussie pour {0}"},
+                    {"Login successful", "Connexion réussie"},
                     {"Incorrect password", "Mot de passe incorrect"},
                     {"Could not find user", "Impossible de trouver l'utilisateur"},
                 }
@@ -51,7 +59,7 @@ namespace SoftwareII
             {
                 "de", new Dictionary<string, string> // German translations
                 {
-                    {"Login successful for {0}", "Anmeldung erfolgreich für {0}"},
+                    {"Login successful", "Anmeldung erfolgreich"},
                     {"Incorrect password", "Falsches Passwort"},
                     {"Could not find user", "Benutzer konnte nicht gefunden werden"},
                 }
@@ -59,7 +67,7 @@ namespace SoftwareII
             {
                 "it", new Dictionary<string, string> // Italian translations
                 {
-                    {"Login successful for {0}", "Accesso riuscito per {0}"},
+                    {"Login successful", "Accesso riuscito"},
                     {"Incorrect password", "Password errata"},
                     {"Could not find user", "Impossibile trovare l'utente"},
                 }
@@ -67,7 +75,7 @@ namespace SoftwareII
             {
                 "es", new Dictionary<string, string> // Spanish translations
                 {
-                    {"Login successful for {0}", "Inicio de sesión exitoso para {0}"},
+                    {"Login successful", "Inicio de sesión exitoso"},
                     {"Incorrect password", "Contraseña incorrecta"},
                     {"Could not find user", "No se pudo encontrar al usuario"},
                 }
@@ -75,7 +83,7 @@ namespace SoftwareII
             {
                 "pl", new Dictionary<string, string> // Polish translations
                 {
-                    {"Login successful for {0}", "Logowanie dla {0} powiodło się"},
+                    {"Login successful", "Logowanie powiodło się"},
                     {"Incorrect password", "Nieprawidłowe hasło"},
                     {"Could not find user", "Nie udało się znaleźć użytkownika"},
                 }
@@ -131,7 +139,7 @@ namespace SoftwareII
                 // User found, now check password
                 if (user.Password == userInput.password)
                 {
-                    string message = $"Login successful for {user.UserName}";
+                    string message = "Login successful";
 
                     // Log the successful login
                     using (StreamWriter writer = new StreamWriter(logFilePath, true))
