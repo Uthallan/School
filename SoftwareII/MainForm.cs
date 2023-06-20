@@ -90,7 +90,7 @@ namespace SoftwareII
                 return;
             }
             // Check if a row is selected
-            if (AppointmentsDataGridView.SelectedCells.Count > 0 && AppointmentsDataGridView.SelectedCells[0].RowIndex > 0)
+            if (AppointmentsDataGridView.SelectedCells[0].RowIndex >= 0)
             {
                 int rowIndex = AppointmentsDataGridView.SelectedCells[0].RowIndex;
                 // Get the first selected row
