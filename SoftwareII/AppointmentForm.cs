@@ -35,12 +35,10 @@ namespace SoftwareII
 
                 if (selectedCustomer != null)
                 {
-                    // Update the textbox with the customer's name
                     CustomerNameTextBox.Text = selectedCustomer.CustomerName;
                 }
                 else
                 {
-                    // Show a message if no customer was found with the selected ID
                     MessageBox.Show($"No customer was found with ID {appointment.CustomerId}.");
                 }
 
@@ -157,8 +155,8 @@ namespace SoftwareII
         public bool AppointmentValidation(Appointment newAppointment)
         {
             // Define business hours
-            TimeSpan startBusinessHour = new TimeSpan(6, 0, 0); // 6 AM
-            TimeSpan endBusinessHour = new TimeSpan(18, 0, 0); // 6 PM
+            TimeSpan startBusinessHour = new TimeSpan(6, 0, 0);
+            TimeSpan endBusinessHour = new TimeSpan(18, 0, 0);
 
             // Convert appointment times to local time
             DateTime localStartTime = newAppointment.Start;
@@ -175,7 +173,6 @@ namespace SoftwareII
             if ((localStartTime.TimeOfDay >= startBusinessHour && localStartTime.TimeOfDay < endBusinessHour) &&
                 (localEndTime.TimeOfDay > startBusinessHour && localEndTime.TimeOfDay <= endBusinessHour))
             {
-                // Get all appointments
                 List<Appointment> allAppointments = Database.GetAppointments();
 
                 // Check for overlapping appointments
@@ -195,7 +192,6 @@ namespace SoftwareII
                 return true;
             }
 
-            // Show warning message
             MessageBox.Show("The appointment is not within the business hours (6 AM to 6 PM). Please choose a different time.");
             return false;
         }

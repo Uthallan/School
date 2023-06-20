@@ -217,7 +217,7 @@ namespace SoftwareII
                 var confirmResult = MessageBox.Show("Are you sure you want to delete the customer record?", "Confirmation", MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.No)
                 {
-                    return; // If the user selects No, exit the method
+                    return;
                 }
 
                 // Ensure the database connection is open
@@ -430,12 +430,12 @@ namespace SoftwareII
 
                 appointmentCommand.Parameters.AddWithValue("@customerId", appointment.CustomerId);
                 appointmentCommand.Parameters.AddWithValue("@userId", appointment.UserId);
-                appointmentCommand.Parameters.AddWithValue("@title", "Not needed"); // Replace with actual title if needed
-                appointmentCommand.Parameters.AddWithValue("@description", "Not needed"); // Replace with actual description if needed
-                appointmentCommand.Parameters.AddWithValue("@location", "Not needed"); // Replace with actual location if needed
-                appointmentCommand.Parameters.AddWithValue("@contact", "Not needed"); // Replace with actual contact if needed
+                appointmentCommand.Parameters.AddWithValue("@title", "Not needed");
+                appointmentCommand.Parameters.AddWithValue("@description", "Not needed");
+                appointmentCommand.Parameters.AddWithValue("@location", "Not needed");
+                appointmentCommand.Parameters.AddWithValue("@contact", "Not needed"); 
                 appointmentCommand.Parameters.AddWithValue("@type", appointment.Type);
-                appointmentCommand.Parameters.AddWithValue("@url", "Not needed"); // Replace with actual URL if needed
+                appointmentCommand.Parameters.AddWithValue("@url", "Not needed");
                 appointmentCommand.Parameters.AddWithValue("@start", appointment.Start.ToString("yyyy-MM-dd HH:mm:ss"));
                 appointmentCommand.Parameters.AddWithValue("@end", appointment.End.ToString("yyyy-MM-dd HH:mm:ss"));
                 appointmentCommand.Parameters.AddWithValue("@createDate", formattedUtcTime);

@@ -36,6 +36,7 @@ namespace SoftwareII
             this.LoginFormLoginbutton = new System.Windows.Forms.Button();
             this.LoginFormCancelButton = new System.Windows.Forms.Button();
             this.LogsButton = new System.Windows.Forms.Button();
+            this.LanguageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LoginFormUsernameTextBox
@@ -100,11 +101,20 @@ namespace SoftwareII
             this.LogsButton.UseVisualStyleBackColor = true;
             this.LogsButton.Click += new System.EventHandler(this.LogsButton_Click);
             // 
+            // LanguageLabel
+            // 
+            this.LanguageLabel.AutoSize = true;
+            this.LanguageLabel.Location = new System.Drawing.Point(12, 235);
+            this.LanguageLabel.Name = "LanguageLabel";
+            this.LanguageLabel.Size = new System.Drawing.Size(0, 13);
+            this.LanguageLabel.TabIndex = 7;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(329, 260);
+            this.Controls.Add(this.LanguageLabel);
             this.Controls.Add(this.LogsButton);
             this.Controls.Add(this.LoginFormCancelButton);
             this.Controls.Add(this.LoginFormLoginbutton);
@@ -128,6 +138,7 @@ namespace SoftwareII
         private System.Windows.Forms.Button LoginFormLoginbutton;
         private System.Windows.Forms.Button LoginFormCancelButton;
         private System.Windows.Forms.Button LogsButton;
+        private System.Windows.Forms.Label LanguageLabel;
     }
 }
 

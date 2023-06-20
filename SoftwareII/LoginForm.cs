@@ -17,6 +17,7 @@ namespace SoftwareII
         public LoginForm()
         {
             InitializeComponent();
+            LanguageLabel.Text = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         }
 
         private void LoginFormCancelButton_Click(object sender, EventArgs e)
@@ -191,21 +192,16 @@ namespace SoftwareII
 
         private void LogsButton_Click(object sender, EventArgs e)
         {
-            // Define the log file path
             string logFilePath = "./userLogins.txt";
 
-            // Check if the file exists
             if (File.Exists(logFilePath))
             {
-                // Read all lines from the file
                 string logContent = File.ReadAllText(logFilePath);
 
-                // Show the contents in a message box
                 MessageBox.Show(logContent);
             }
             else
             {
-                // Show a message indicating that no logs are available
                 MessageBox.Show("No logs are available.");
             }
         }

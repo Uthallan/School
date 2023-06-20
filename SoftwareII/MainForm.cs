@@ -17,6 +17,9 @@ namespace SoftwareII
         {
             InitializeComponent();
 
+            LoginForm newForm = new LoginForm();
+            newForm.ShowDialog();
+
             AppointmentsDataGridView.DataSource = Database.GetAppointments();
 
             // auto logging in as test for testing
@@ -58,6 +61,11 @@ namespace SoftwareII
 
         private void MainFormMCRButton_Click(object sender, EventArgs e)
         {
+            if (Database.loggedInUser == null)
+            {
+                MessageBox.Show("Please login first");
+                return;
+            }
             MCRForm newForm = new MCRForm();
             newForm.ShowDialog();
         }
@@ -66,6 +74,7 @@ namespace SoftwareII
         {
             if (Database.loggedInUser == null)
             {
+                MessageBox.Show("Please login first");
                 return;
             }
             AppointmentForm newForm = new AppointmentForm();
@@ -75,6 +84,11 @@ namespace SoftwareII
 
         private void UpdateAppointmentButton_Click(object sender, EventArgs e)
         {
+            if (Database.loggedInUser == null)
+            {
+                MessageBox.Show("Please login first");
+                return;
+            }
             // Check if a row is selected
             if (AppointmentsDataGridView.SelectedCells.Count > 0 && AppointmentsDataGridView.SelectedCells[0].RowIndex > 0)
             {
@@ -118,6 +132,11 @@ namespace SoftwareII
 
         private void CancelAppointmentButton_Click(object sender, EventArgs e)
         {
+            if (Database.loggedInUser == null)
+            {
+                MessageBox.Show("Please login first");
+                return;
+            }
             // Check if a row is selected
             if (AppointmentsDataGridView.SelectedCells.Count > 0 && AppointmentsDataGridView.SelectedCells[0].RowIndex >= 0)
             {
