@@ -197,14 +197,6 @@ namespace SoftwareII
         }
 
 
-
-
-
-
-
-
-
-
         private void ScheduleButton_Click(object sender, EventArgs e)
         {
             

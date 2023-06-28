@@ -278,11 +278,14 @@ namespace SoftwareII
                 // If country doesn't exist, create new country
                 if (countryIdObj == null)
                 {
-                    var insertCountryCommand = new MySqlCommand("INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@country, NOW(), @createdBy, NOW(), @lastUpdateBy)", connection);
+                    var insertCountryCommand = new MySqlCommand("INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@country, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)", connection);
                     insertCountryCommand.Parameters.AddWithValue("@country", customer.Country);
+                    insertCountryCommand.Parameters.AddWithValue("@createDate", formattedUtcTime);
                     insertCountryCommand.Parameters.AddWithValue("@createdBy", currentUser);
+                    insertCountryCommand.Parameters.AddWithValue("@lastUpdate", formattedUtcTime);
                     insertCountryCommand.Parameters.AddWithValue("@lastUpdateBy", currentUser);
                     insertCountryCommand.ExecuteNonQuery();
+
                     countryId = Convert.ToInt32(insertCountryCommand.LastInsertedId);
                 }
                 else
@@ -299,12 +302,15 @@ namespace SoftwareII
 
                 if (cityIdObj == null)
                 {
-                    var insertCityCommand = new MySqlCommand("INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@city, @countryId, NOW(), @createdBy, NOW(), @lastUpdateBy)", connection);
+                    var insertCityCommand = new MySqlCommand("INSERT INTO city (city, countryId, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES (@city, @countryId, @createDate, @createdBy, @lastUpdate, @lastUpdateBy)", connection);
                     insertCityCommand.Parameters.AddWithValue("@city", customer.City);
                     insertCityCommand.Parameters.AddWithValue("@countryId", countryId);
+                    insertCityCommand.Parameters.AddWithValue("@createDate", formattedUtcTime);
                     insertCityCommand.Parameters.AddWithValue("@createdBy", currentUser);
+                    insertCityCommand.Parameters.AddWithValue("@lastUpdate", formattedUtcTime);
                     insertCityCommand.Parameters.AddWithValue("@lastUpdateBy", currentUser);
                     insertCityCommand.ExecuteNonQuery();
+
                     cityId = Convert.ToInt32(insertCityCommand.LastInsertedId);
                 }
                 else
@@ -392,11 +398,11 @@ namespace SoftwareII
                             CustomerId = Convert.ToInt32(reader["customerId"]),
                             UserId = Convert.ToInt32(reader["userId"]),
                             Type = Convert.ToString(reader["type"]),
-                            Start = Convert.ToDateTime(reader["start"]),
-                            End = Convert.ToDateTime(reader["end"]),
-                            CreateDate = Convert.ToDateTime(reader["createDate"]),
+                            Start = Convert.ToDateTime(reader["start"]).ToLocalTime(),
+                            End = Convert.ToDateTime(reader["end"]).ToLocalTime(),
+                            CreateDate = Convert.ToDateTime(reader["createDate"]).ToLocalTime(),
                             CreatedBy = Convert.ToString(reader["createdBy"]),
-                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"]),
+                            LastUpdate = Convert.ToDateTime(reader["lastUpdate"]).ToLocalTime(),
                             LastUpdateBy = Convert.ToString(reader["lastUpdateBy"])
                         });
                     }
@@ -423,6 +429,10 @@ namespace SoftwareII
                 string formattedUtcTime = utcTime.ToString("yyyy-MM-dd HH:mm:ss");
                 string currentUser = loggedInUser.UserName;
 
+                // Convert local times to UTC
+                string startUtcTime = appointment.Start.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+                string endUtcTime = appointment.End.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
                 // Insert into the appointment table
                 var appointmentCommand = new MySqlCommand(@"
         INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)
@@ -433,11 +443,11 @@ namespace SoftwareII
                 appointmentCommand.Parameters.AddWithValue("@title", "Not needed");
                 appointmentCommand.Parameters.AddWithValue("@description", "Not needed");
                 appointmentCommand.Parameters.AddWithValue("@location", "Not needed");
-                appointmentCommand.Parameters.AddWithValue("@contact", "Not needed"); 
+                appointmentCommand.Parameters.AddWithValue("@contact", "Not needed");
                 appointmentCommand.Parameters.AddWithValue("@type", appointment.Type);
                 appointmentCommand.Parameters.AddWithValue("@url", "Not needed");
-                appointmentCommand.Parameters.AddWithValue("@start", appointment.Start.ToString("yyyy-MM-dd HH:mm:ss"));
-                appointmentCommand.Parameters.AddWithValue("@end", appointment.End.ToString("yyyy-MM-dd HH:mm:ss"));
+                appointmentCommand.Parameters.AddWithValue("@start", startUtcTime);
+                appointmentCommand.Parameters.AddWithValue("@end", endUtcTime);
                 appointmentCommand.Parameters.AddWithValue("@createDate", formattedUtcTime);
                 appointmentCommand.Parameters.AddWithValue("@createdBy", currentUser);
                 appointmentCommand.Parameters.AddWithValue("@lastUpdate", formattedUtcTime);
@@ -450,6 +460,7 @@ namespace SoftwareII
                 MessageBox.Show(ex.Message);
             }
         }
+
 
 
         public static void UpdateAppointment(Appointment appointment)

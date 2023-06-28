@@ -17,8 +17,87 @@ namespace SoftwareII
         public LoginForm()
         {
             InitializeComponent();
-            LanguageLabel.Text = "Language: " + CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            string languageCode = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            LanguageLabel.Text = "Language: " + languageCode;
+
+            switch (languageCode)
+            {
+                case "en":
+                    LogsButton.Text = "Logs";
+                    UserNameLabel.Text = "User Name";
+                    PasswordLabel.Text = "Password";
+                    LoginFormLoginbutton.Text = "Login";
+                    LoginFormCancelButton.Text = "Cancel";
+                    break;
+
+                case "frc":
+                    // Translation for French Canadian
+                    LogsButton.Text = "Journaux";
+                    UserNameLabel.Text = "Nom d'utilisateur";
+                    PasswordLabel.Text = "Mot de passe";
+                    LoginFormLoginbutton.Text = "Connexion";
+                    LoginFormCancelButton.Text = "Annuler";
+                    break;
+
+                case "fr":
+                    // Translation for French
+                    LogsButton.Text = "Journaux";
+                    UserNameLabel.Text = "Nom d'utilisateur";
+                    PasswordLabel.Text = "Mot de passe";
+                    LoginFormLoginbutton.Text = "Connexion";
+                    LoginFormCancelButton.Text = "Annuler";
+                    break;
+
+                case "de":
+                    // Translation for German
+                    LogsButton.Text = "Protokolle";
+                    UserNameLabel.Text = "Benutzername";
+                    PasswordLabel.Text = "Passwort";
+                    LoginFormLoginbutton.Text = "Anmelden";
+                    LoginFormCancelButton.Text = "Abbrechen";
+                    break;
+
+                case "it":
+                    // Translation for Italian
+                    LogsButton.Text = "Registri";
+                    UserNameLabel.Text = "Nome utente";
+                    PasswordLabel.Text = "Parola d'ordine";
+                    LoginFormLoginbutton.Text = "Accedi";
+                    LoginFormCancelButton.Text = "Annulla";
+                    break;
+
+                case "es":
+                    // Translation for Spanish
+                    LogsButton.Text = "Registros";
+                    UserNameLabel.Text = "Nombre de usuario";
+                    PasswordLabel.Text = "Contraseña";
+                    LoginFormLoginbutton.Text = "Iniciar sesión";
+                    LoginFormCancelButton.Text = "Cancelar";
+                    break;
+
+                case "pl":
+                    // Translation for Polish
+                    LogsButton.Text = "Dzienniki";
+                    UserNameLabel.Text = "Nazwa użytkownika";
+                    PasswordLabel.Text = "Hasło";
+                    LoginFormLoginbutton.Text = "Zaloguj";
+                    LoginFormCancelButton.Text = "Anuluj";
+                    break;
+
+                default:
+                    // Default translation for unsupported languages
+                    LogsButton.Text = "Logs";
+                    UserNameLabel.Text = "Username";
+                    PasswordLabel.Text = "Password";
+                    LoginFormLoginbutton.Text = "Login";
+                    LoginFormCancelButton.Text = "Cancel";
+                    break;
+            }
         }
+
+
+
+
 
         private void LoginFormCancelButton_Click(object sender, EventArgs e)
         {

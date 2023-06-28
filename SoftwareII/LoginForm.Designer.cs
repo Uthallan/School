@@ -31,8 +31,8 @@ namespace SoftwareII
         {
             this.LoginFormUsernameTextBox = new System.Windows.Forms.TextBox();
             this.LoginFormPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.UserNameLabel = new System.Windows.Forms.Label();
+            this.PasswordLabel = new System.Windows.Forms.Label();
             this.LoginFormLoginbutton = new System.Windows.Forms.Button();
             this.LoginFormCancelButton = new System.Windows.Forms.Button();
             this.LogsButton = new System.Windows.Forms.Button();
@@ -53,23 +53,23 @@ namespace SoftwareII
             this.LoginFormPasswordTextBox.Size = new System.Drawing.Size(135, 20);
             this.LoginFormPasswordTextBox.TabIndex = 1;
             // 
-            // label1
+            // UserNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Username";
+            this.UserNameLabel.AutoSize = true;
+            this.UserNameLabel.Location = new System.Drawing.Point(88, 46);
+            this.UserNameLabel.Name = "UserNameLabel";
+            this.UserNameLabel.Size = new System.Drawing.Size(55, 13);
+            this.UserNameLabel.TabIndex = 2;
+            this.UserNameLabel.Text = "Username";
             // 
-            // label2
+            // PasswordLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(88, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Password";
+            this.PasswordLabel.AutoSize = true;
+            this.PasswordLabel.Location = new System.Drawing.Point(88, 95);
+            this.PasswordLabel.Name = "PasswordLabel";
+            this.PasswordLabel.Size = new System.Drawing.Size(53, 13);
+            this.PasswordLabel.TabIndex = 3;
+            this.PasswordLabel.Text = "Password";
             // 
             // LoginFormLoginbutton
             // 
@@ -118,12 +118,11 @@ namespace SoftwareII
             this.Controls.Add(this.LogsButton);
             this.Controls.Add(this.LoginFormCancelButton);
             this.Controls.Add(this.LoginFormLoginbutton);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PasswordLabel);
+            this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LoginFormPasswordTextBox);
             this.Controls.Add(this.LoginFormUsernameTextBox);
             this.Name = "LoginForm";
-            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,8 +132,8 @@ namespace SoftwareII
 
         private System.Windows.Forms.TextBox LoginFormUsernameTextBox;
         private System.Windows.Forms.TextBox LoginFormPasswordTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label UserNameLabel;
+        private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.Button LoginFormLoginbutton;
         private System.Windows.Forms.Button LoginFormCancelButton;
         private System.Windows.Forms.Button LogsButton;
